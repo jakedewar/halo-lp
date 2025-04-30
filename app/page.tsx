@@ -210,7 +210,7 @@ export default function Home() {
             Your Personal Knowledge Satellite
           </h2>
           <p className="text-base text-white/50 max-w-xl mx-auto leading-relaxed mb-8">
-            Halo's unique orbit system creates a dynamic workspace that follows you as you browse. Each orbit represents a collection of related notes, tasks, and ideas tied to specific web pages or domains.
+            Halo&apos;s unique orbit system creates a dynamic workspace that follows you as you browse. Each orbit represents a collection of related notes, tasks, and ideas tied to specific web pages or domains.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
