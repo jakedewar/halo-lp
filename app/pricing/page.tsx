@@ -53,7 +53,7 @@ export default function PricingPage() {
                 >
                     <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
                     <p className="text-white/60 max-w-2xl mx-auto">
-                        Choose the plan that's right for you. All plans include a 14-day free trial.
+                        Choose the plan that&apos;s right for you. All plans include a 14-day free trial.
                     </p>
                 </motion.div>
 
@@ -65,8 +65,8 @@ export default function PricingPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`relative p-8 rounded-xl border ${plan.popular
-                                    ? 'border-indigo-500 bg-gradient-to-b from-indigo-500/10 to-transparent'
-                                    : 'border-white/10 bg-black/30'
+                                ? 'border-indigo-500 bg-gradient-to-b from-indigo-500/10 to-transparent'
+                                : 'border-white/10 bg-black/30'
                                 }`}
                         >
                             {plan.popular && (
@@ -101,8 +101,8 @@ export default function PricingPage() {
                             </ul>
                             <button
                                 className={`w-full py-3 rounded-lg font-medium transition-colors ${plan.popular
-                                        ? 'bg-indigo-500 hover:bg-indigo-600'
-                                        : 'bg-white/10 hover:bg-white/20'
+                                    ? 'bg-indigo-500 hover:bg-indigo-600'
+                                    : 'bg-white/10 hover:bg-white/20'
                                     }`}
                             >
                                 Get Started
