@@ -78,8 +78,30 @@ export default function Home() {
         {/* Base background */}
         <div className="absolute inset-0 bg-[#030303]" />
 
-        {/* Refined gradient */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/[0.03] via-transparent to-blue-500/[0.03]" />
+        {/* Space gradient */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 via-purple-900/5 to-blue-900/20" />
+
+        {/* Nebula effect */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-500/2 rounded-full blur-[60px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/2 rounded-full blur-[60px]" />
+        </div>
+
+        {/* Stars */}
+        <div className="absolute inset-0">
+          {[...Array(100)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-0.5 h-0.5 bg-white rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.5 + 0.5,
+                animation: `twinkle ${Math.random() * 3 + 2}s infinite alternate`,
+              }}
+            />
+          ))}
+        </div>
 
         {/* Minimal noise */}
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.015] mix-blend-overlay" />
@@ -279,6 +301,13 @@ export default function Home() {
           <p className="text-xs text-white/30">Crafted with care for explorers of the digital world</p>
         </footer>
       </div>
+
+      <style jsx global>{`
+        @keyframes twinkle {
+          0% { opacity: 0.2; }
+          100% { opacity: 1; }
+        }
+      `}</style>
     </main>
   );
 }
