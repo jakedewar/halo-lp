@@ -196,6 +196,53 @@ export default function Home() {
           </button>
         </motion.div>
 
+        {/* Orbit Concept Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-48 text-center"
+        >
+          <span className="inline-block text-xs font-medium tracking-wide uppercase text-indigo-300/70 mb-6">
+            The Orbit Concept
+          </span>
+          <h2 className="text-2xl font-bold text-white mb-6">
+            Your Personal Knowledge Satellite
+          </h2>
+          <p className="text-base text-white/50 max-w-xl mx-auto leading-relaxed mb-8">
+            Halo's unique orbit system creates a dynamic workspace that follows you as you browse. Each orbit represents a collection of related notes, tasks, and ideas tied to specific web pages or domains.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                title: "Contextual",
+                description: "Automatically linked to the pages you visit"
+              },
+              {
+                title: "Persistent",
+                description: "Stays with you across browsing sessions"
+              },
+              {
+                title: "Organized",
+                description: "Groups related thoughts and tasks together"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative overflow-hidden rounded-lg border border-white/[0.05] bg-gradient-to-b from-white/[0.05] to-transparent p-6 hover:border-indigo-500/20 hover:bg-gradient-to-b hover:from-indigo-500/[0.05] hover:to-transparent backdrop-blur-[2px] transition-all duration-500"
+              >
+                <div className="relative">
+                  <h3 className="text-sm font-medium text-indigo-300 mb-3">{feature.title}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Vision Section */}
         <motion.div
           id="future"

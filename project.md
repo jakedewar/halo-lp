@@ -4,6 +4,19 @@
 
 **Halo** is a lightweight, futuristic Chrome Extension that acts as a user's *ambient second brain*. It provides a persistent, minimal sidebar across all websites, allowing users to quickly capture notes, tasks, and reminders without losing browsing context. Halo is designed to enhance focus, creativity, and retention by keeping thoughts easily accessible at all times.
 
+## The Orbit Concept
+
+At the heart of Halo is the concept of an **orbit** - a dynamic, contextual workspace that follows you as you browse. Each orbit represents a collection of related notes, tasks, and ideas that are tied to specific web pages or domains. Think of it as a personal knowledge satellite that orbits around your browsing activity, automatically organizing and surfacing relevant information based on your current context.
+
+Orbits are:
+- **Contextual:** Automatically linked to the pages you visit
+- **Persistent:** Stay with you across browsing sessions
+- **Organized:** Group related thoughts and tasks together
+- **Flexible:** Can be manually created or automatically generated
+- **Private:** Stored locally on your device
+
+This orbit-based approach ensures that your thoughts and tasks are always in the right place, making it easier to maintain focus and build knowledge over time.
+
 ## Key Goals
 
 - Deliver an always-available, non-intrusive **sidebar** UI.
