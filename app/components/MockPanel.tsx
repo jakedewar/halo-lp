@@ -5,6 +5,7 @@ import { X, Circle, Plus, Search, Check, Clock, Link as LinkIcon, Orbit, Share2,
 import { useState } from 'react';
 
 interface MockPanelProps {
+    isOpen: boolean;
     onClose: () => void;
 }
 
@@ -17,7 +18,7 @@ interface Note {
     createdAt: Date;
 }
 
-export default function MockPanel({ onClose }: MockPanelProps) {
+export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
     const [activeTab, setActiveTab] = useState<'notes' | 'tasks'>('notes');
     const [newNote, setNewNote] = useState('');
     const [isDarkMode, setIsDarkMode] = useState(true);
@@ -90,6 +91,13 @@ export default function MockPanel({ onClose }: MockPanelProps) {
         setIsDarkMode(!isDarkMode);
     };
 
+    const handleOrbitChange = (noteId: number, newOrbit: string) => {
+        setNotes(notes.map(note =>
+            note.id === noteId ? { ...note, orbit: newOrbit } : note
+        ));
+        setSelectedOrbit(null);
+    };
+
     const themeClasses = isDarkMode
         ? 'bg-[#030303] text-white/70 border-white/[0.05]'
         : 'bg-white text-gray-800 border-gray-200';
@@ -100,7 +108,7 @@ export default function MockPanel({ onClose }: MockPanelProps) {
 
     return (
         <AnimatePresence>
-            {true && (
+            {isOpen && (
                 <>
                     {/* Backdrop */}
                     <motion.div
@@ -400,7 +408,7 @@ export default function MockPanel({ onClose }: MockPanelProps) {
                                                     <span className={`text-xs ${isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>H</span>
                                                 </div>
                                                 <div className={`flex-1 p-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] text-white/70' : 'bg-gray-50 text-gray-800'} text-sm`}>
-                                                    Soon, you'll be able to ask Halo to recall, connect, and navigate your orbit.
+                                                    Soon, you&apos;ll be able to ask Halo to recall, connect, and navigate your orbit.
                                                 </div>
                                             </div>
                                         </div>
