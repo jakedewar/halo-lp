@@ -37,6 +37,12 @@ export default function Navbar() {
                             Vision
                         </Link>
                         <Link
+                            href="/pricing"
+                            className="text-xs text-white/50 hover:text-white transition-colors duration-200"
+                        >
+                            Pricing
+                        </Link>
+                        <Link
                             href="#"
                             className="text-xs px-4 py-2 rounded-md bg-indigo-500 text-white hover:bg-indigo-400 transition-colors duration-200"
                         >

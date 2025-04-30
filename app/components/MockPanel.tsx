@@ -390,7 +390,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                     </div>
 
                                     {/* Chat Interface Preview */}
-                                    <div className={`mt-6 p-4 rounded-lg border ${themeClasses}`}>
+                                    {/* <div className={`mt-6 p-4 rounded-lg border ${themeClasses}`}>
                                         <div className="flex items-center gap-2 mb-3">
                                             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
                                             <span className={`text-sm ${isDarkMode ? 'text-white/50' : 'text-gray-500'}`}>Coming Soon: Speak to Halo</span>
@@ -420,7 +420,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     {/* Footer */}
                                     <div className={`pt-6 mt-6 border-t ${isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'}`}>

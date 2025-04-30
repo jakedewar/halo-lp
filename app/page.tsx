@@ -132,7 +132,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-base text-white/50 mb-12 max-w-xl mx-auto leading-relaxed">
-            Halo quietly captures your ideas, actions, and discoveries — weaving your digital world into something effortless to remember, search, and build upon.
+            Halo is a Chrome extension that quietly captures your ideas, actions, and discoveries — weaving your digital world into something effortless to remember, search, and build upon.
           </p>
           <motion.div
             className="flex justify-center gap-3"
