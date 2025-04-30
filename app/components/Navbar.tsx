@@ -16,7 +16,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2 group">
-                        <Circle className="w-5 h-5 text-indigo-300 group-hover:text-indigo-200 transition-colors duration-200" />
+                        <Circle className="w-5 h-5 text-indigo-300 group-hover:text-indigo-200 transition-colors duration-200" strokeWidth={2.5} />
                         <span className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r text-white">
                             Halo
                         </span>

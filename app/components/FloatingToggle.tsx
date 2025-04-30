@@ -32,7 +32,7 @@ export default function FloatingToggle({ onClick }: FloatingToggleProps) {
 
                 {/* Button */}
                 <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#030303] border border-white/[0.05] shadow-lg backdrop-blur-sm">
-                    <Circle className="w-5 h-5 text-indigo-300" />
+                    <Circle className="w-5 h-5 text-indigo-300" strokeWidth={2.5} />
                 </div>
             </div>
         </motion.button>

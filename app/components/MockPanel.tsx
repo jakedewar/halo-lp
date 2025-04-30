@@ -123,7 +123,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                             {/* Header */}
                             <div className="flex justify-between items-center mb-6">
                                 <div className="flex items-center gap-2">
-                                    <Circle className={`w-5 h-5 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
+                                    <Circle className={`w-5 h-5 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} strokeWidth={2.5} />
                                     <h2 className={`text-lg font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                                         {currentView === 'memory-map' ? 'Memory Map' : 'Halo'}
                                     </h2>
@@ -319,16 +319,24 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                                                     <span
                                                                         onClick={() => setSelectedOrbit(selectedOrbit === note.id ? null : note.id)}
                                                                         className={`flex items-center gap-1 text-xs px-2 py-1 rounded-full font-medium cursor-pointer transition-colors ${note.orbit === 'Ungrouped'
-                                                                            ? 'bg-white/[0.05] text-white/50 hover:bg-white/[0.1]'
-                                                                            : 'bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30'}`}
+                                                                            ? isDarkMode
+                                                                                ? 'bg-white/[0.05] text-white/50 hover:bg-white/[0.1]'
+                                                                                : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                                                                            : isDarkMode
+                                                                                ? 'bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30'
+                                                                                : 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200'}`}
                                                                     >
                                                                         <Orbit className="w-3 h-3" /> {note.orbit}
                                                                     </span>
                                                                 </div>
                                                                 {/* Scope pill */}
                                                                 <span className={`flex items-center gap-1 text-xs px-2 py-1 rounded-full font-medium ${note.scope === 'global'
-                                                                    ? 'bg-purple-500/20 text-purple-300'
-                                                                    : 'bg-blue-500/20 text-blue-300'}`}>
+                                                                    ? isDarkMode
+                                                                        ? 'bg-purple-500/20 text-purple-300'
+                                                                        : 'bg-purple-100 text-purple-600'
+                                                                    : isDarkMode
+                                                                        ? 'bg-blue-500/20 text-blue-300'
+                                                                        : 'bg-blue-100 text-blue-600'}`}>
                                                                     {note.scope === 'global' ? <Globe className="w-3 h-3" /> : <LinkIcon className="w-3 h-3" />} {note.scope === 'global' ? 'Global' : 'URL-Specific'}
                                                                 </span>
                                                             </div>
