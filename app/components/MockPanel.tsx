@@ -91,13 +91,6 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
         setIsDarkMode(!isDarkMode);
     };
 
-    const handleOrbitChange = (noteId: number, newOrbit: string) => {
-        setNotes(notes.map(note =>
-            note.id === noteId ? { ...note, orbit: newOrbit } : note
-        ));
-        setSelectedOrbit(null);
-    };
-
     const themeClasses = isDarkMode
         ? 'bg-[#030303] text-white/70 border-white/[0.05]'
         : 'bg-white text-gray-800 border-gray-200';
