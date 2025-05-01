@@ -431,7 +431,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                                 {/* Linked/Unlinked Toggle */}
                                                 <button
                                                     onClick={() => setCreationScope(creationScope === 'url' ? 'global' : 'url')}
-                                                    className={`flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'url'
+                                                    className={`flex items-center border rounded-lg border-indigo-500/20 justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'url'
                                                         ? isDarkMode
                                                             ? 'bg-indigo-500 text-white'
                                                             : 'bg-indigo-500 text-white'
