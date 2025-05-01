@@ -420,39 +420,30 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                                     </button>
                                                 </div>
 
-                                                {/* Global/Linked Toggle - Only show for notes */}
-                                                {activeTab === 'notes' && (
-                                                    <div className={`flex-1 flex rounded-lg overflow-hidden border ${isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'}`}>
-                                                        <button
-                                                            onClick={() => setCreationScope('global')}
-                                                            className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'global'
-                                                                ? isDarkMode
-                                                                    ? 'bg-indigo-500 text-white'
-                                                                    : 'bg-indigo-500 text-white'
-                                                                : isDarkMode
-                                                                    ? 'bg-white/[0.03] text-white/50 hover:text-white'
-                                                                    : 'bg-gray-50 text-gray-500 hover:text-gray-900'
-                                                                }`}
-                                                        >
-                                                            <Globe className="w-3 h-3" />
-                                                            <span>Global</span>
-                                                        </button>
-                                                        <button
-                                                            onClick={() => setCreationScope('url')}
-                                                            className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'url'
-                                                                ? isDarkMode
-                                                                    ? 'bg-indigo-500 text-white'
-                                                                    : 'bg-indigo-500 text-white'
-                                                                : isDarkMode
-                                                                    ? 'bg-white/[0.03] text-white/50 hover:text-white'
-                                                                    : 'bg-gray-50 text-gray-500 hover:text-gray-900'
-                                                                }`}
-                                                        >
+                                                {/* Linked/Unlinked Toggle */}
+                                                <button
+                                                    onClick={() => setCreationScope(creationScope === 'url' ? 'global' : 'url')}
+                                                    className={`flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'url'
+                                                        ? isDarkMode
+                                                            ? 'bg-indigo-500 text-white'
+                                                            : 'bg-indigo-500 text-white'
+                                                        : isDarkMode
+                                                            ? 'bg-white/[0.03] text-white/50 hover:text-white'
+                                                            : 'bg-gray-50 text-gray-500 hover:text-gray-900'
+                                                        }`}
+                                                >
+                                                    {creationScope === 'url' ? (
+                                                        <>
                                                             <LinkIcon className="w-3 h-3" />
                                                             <span>Linked</span>
-                                                        </button>
-                                                    </div>
-                                                )}
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <Globe className="w-3 h-3" />
+                                                            <span>Unlinked</span>
+                                                        </>
+                                                    )}
+                                                </button>
                                             </div>
 
                                             {/* Rich Text Input */}
