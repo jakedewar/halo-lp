@@ -148,7 +148,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                         <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${isDarkMode ? 'text-white/30' : 'text-gray-400'}`} />
                                         <input
                                             type="text"
-                                            placeholder="Search your thoughts..."
+                                            placeholder="Search your orbits..."
                                             className={`w-full pl-10 pr-4 py-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] border-white/[0.05] text-white/70 placeholder-white/30' : 'bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-400'} border text-sm focus:outline-none focus:border-indigo-500/30 transition-colors`}
                                         />
                                     </div>
@@ -459,7 +459,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                                         }
                                                     }}
                                                     className={`flex-1 px-4 py-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] border-white/[0.05] text-white/70 placeholder-white/30' : 'bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-400'} border text-sm focus:outline-none focus:border-indigo-500/30 transition-colors min-h-[40px] max-h-[120px] overflow-y-auto relative ${!newNote ? 'before:content-[attr(data-placeholder)] before:absolute before:top-2 before:left-4 before:text-sm before:pointer-events-none' : ''}`}
-                                                    data-placeholder={activeTab === 'notes' ? "Capture a thought..." : "Add a new task..."}
+                                                    data-placeholder={activeTab === 'notes' ? "Capture a note..." : "Add a new task..."}
                                                     suppressContentEditableWarning
                                                 />
                                                 <button
