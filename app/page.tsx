@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Navbar from "./components/Navbar";
 import MockPanel from "./components/MockPanel";
 import FloatingToggle from "./components/FloatingToggle";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const OrbitRing = () => {
   return (
@@ -70,6 +70,18 @@ const OrbitRing = () => {
 
 export default function Home() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [stars, setStars] = useState<Array<{ left: string; top: string; opacity: number; animation: string }>>([]);
+
+  useEffect(() => {
+    // Generate stars only on client side
+    const generatedStars = [...Array(100)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      opacity: Math.random() * 0.5 + 0.5,
+      animation: `twinkle ${Math.random() * 3 + 2}s infinite alternate`,
+    }));
+    setStars(generatedStars);
+  }, []);
 
   return (
     <main className="relative min-h-screen bg-black">
@@ -89,16 +101,11 @@ export default function Home() {
 
         {/* Stars */}
         <div className="absolute inset-0">
-          {[...Array(100)].map((_, i) => (
+          {stars.map((star, i) => (
             <div
               key={i}
               className="absolute w-0.5 h-0.5 bg-white rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.5 + 0.5,
-                animation: `twinkle ${Math.random() * 3 + 2}s infinite alternate`,
-              }}
+              style={star}
             />
           ))}
         </div>

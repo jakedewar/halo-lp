@@ -61,11 +61,19 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
             orbit: 'Ungrouped',
             scope: 'global',
             createdAt: new Date('2024-03-12')
+        },
+        {
+            id: 5,
+            content: 'AI-powered insights will help organize and connect your thoughts automatically',
+            url: null,
+            orbit: 'Future Features',
+            scope: 'global',
+            createdAt: new Date('2024-03-11')
         }
     ]);
     const [tasks, setTasks] = useState([
-        { id: 1, content: 'Review project notes', completed: false },
-        { id: 2, content: 'Schedule team meeting', completed: false }
+        { id: 1, content: 'Download Halo extension', completed: false },
+        { id: 2, content: 'Tell a friend about Halo', completed: false }
     ]);
     const contentEditableRef = useRef<HTMLDivElement>(null);
 
