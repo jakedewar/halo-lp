@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Circle, Plus, Search, Check, Clock, Link as LinkIcon, Orbit, Share2, MoreVertical, HelpCircle, Sun, Moon, Settings, Globe } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface MockPanelProps {
     isOpen: boolean;
@@ -25,6 +25,7 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
     const [selectedOrbit, setSelectedOrbit] = useState<number | null>(null);
     const [filterOrbit, setFilterOrbit] = useState<string>('All Orbits');
     const [filterScope, setFilterScope] = useState<'all' | 'url' | 'global'>('all');
+    const [creationScope, setCreationScope] = useState<'url' | 'global'>('url');
     const [isOrbitDropdownOpen, setIsOrbitDropdownOpen] = useState(false);
     const [isScopeDropdownOpen, setIsScopeDropdownOpen] = useState(false);
     const [currentView, setCurrentView] = useState<'main' | 'memory-map'>('main');
@@ -66,18 +67,22 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
         { id: 1, content: 'Review project notes', completed: false },
         { id: 2, content: 'Schedule team meeting', completed: false }
     ]);
+    const contentEditableRef = useRef<HTMLDivElement>(null);
 
     const handleAddNote = () => {
         if (newNote.trim()) {
             setNotes([...notes, {
                 id: Date.now(),
                 content: newNote,
-                url: 'https://current-page.com',
+                url: creationScope === 'url' ? 'https://current-page.com' : null,
                 orbit: 'Ungrouped',
-                scope: 'url',
+                scope: creationScope,
                 createdAt: new Date()
             }]);
             setNewNote('');
+            if (contentEditableRef.current) {
+                contentEditableRef.current.textContent = '';
+            }
         }
     };
 
@@ -174,25 +179,6 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                     <div className="flex-1 overflow-y-auto">
                                         {activeTab === 'notes' ? (
                                             <div className="space-y-4">
-
-                                                {/* New Note Input */}
-                                                <div className="flex gap-2">
-                                                    <input
-                                                        type="text"
-                                                        value={newNote}
-                                                        onChange={(e) => setNewNote(e.target.value)}
-                                                        onKeyDown={(e) => e.key === 'Enter' && handleAddNote()}
-                                                        placeholder="Capture a thought..."
-                                                        className={`flex-1 px-4 py-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] border-white/[0.05] text-white/70 placeholder-white/30' : 'bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-400'} border text-sm focus:outline-none focus:border-indigo-500/30 transition-colors`}
-                                                    />
-                                                    <button
-                                                        onClick={handleAddNote}
-                                                        className="p-2 rounded-lg bg-indigo-500 text-white hover:bg-indigo-400 transition-colors"
-                                                    >
-                                                        <Plus className="w-4 h-4" />
-                                                    </button>
-                                                </div>
-
                                                 {/* Filter Bar: Orbit & Scope side by side */}
                                                 <div className="flex gap-2 mb-4">
                                                     {/* Orbit Filter */}
@@ -397,38 +383,103 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                                         )}
                                     </div>
 
-                                    {/* Chat Interface Preview */}
-                                    {/* <div className={`mt-6 p-4 rounded-lg border ${themeClasses}`}>
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-                                            <span className={`text-sm ${isDarkMode ? 'text-white/50' : 'text-gray-500'}`}>Coming Soon: Speak to Halo</span>
-                                        </div>
+                                    {/* New Note/Task Input */}
+                                    <div className={`pt-6 mt-6 border-t ${isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'}`}>
                                         <div className="space-y-3">
-                                            <div className="flex items-start gap-2">
-                                                <div className={`w-6 h-6 rounded-full ${isDarkMode ? 'bg-indigo-500/20' : 'bg-indigo-100'} flex items-center justify-center`}>
-                                                    <span className={`text-xs ${isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>H</span>
+                                            {/* Quick Toggle Buttons */}
+                                            <div className="flex gap-2">
+                                                {/* Note/Task Toggle */}
+                                                <div className={`flex-1 flex rounded-lg overflow-hidden border ${isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'}`}>
+                                                    <button
+                                                        onClick={() => setActiveTab('notes')}
+                                                        className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${activeTab === 'notes'
+                                                            ? isDarkMode
+                                                                ? 'bg-indigo-500 text-white'
+                                                                : 'bg-indigo-500 text-white'
+                                                            : isDarkMode
+                                                                ? 'bg-white/[0.03] text-white/50 hover:text-white'
+                                                                : 'bg-gray-50 text-gray-500 hover:text-gray-900'
+                                                            }`}
+                                                    >
+                                                        <Circle className="w-3 h-3" />
+                                                        <span>Note</span>
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setActiveTab('tasks')}
+                                                        className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${activeTab === 'tasks'
+                                                            ? isDarkMode
+                                                                ? 'bg-indigo-500 text-white'
+                                                                : 'bg-indigo-500 text-white'
+                                                            : isDarkMode
+                                                                ? 'bg-white/[0.03] text-white/50 hover:text-white'
+                                                                : 'bg-gray-50 text-gray-500 hover:text-gray-900'
+                                                            }`}
+                                                    >
+                                                        <Check className="w-3 h-3" />
+                                                        <span>Task</span>
+                                                    </button>
                                                 </div>
-                                                <div className={`flex-1 p-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] text-white/70' : 'bg-gray-50 text-gray-800'} text-sm`}>
-                                                    Soon, you&apos;ll be able to ask Halo to recall, connect, and navigate your orbit.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="mt-4">
-                                            <div className="relative">
-                                                <input
-                                                    type="text"
-                                                    disabled
-                                                    placeholder="Chat with Halo (coming soon)..."
-                                                    className={`w-full pl-4 pr-12 py-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] border-white/[0.05] text-white/30 placeholder-white/20' : 'bg-gray-50 border-gray-200 text-gray-400 placeholder-gray-300'} border text-sm focus:outline-none cursor-not-allowed`}
-                                                />
-                                                <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                                                    <div className={`w-5 h-5 rounded-full ${isDarkMode ? 'bg-indigo-500/20' : 'bg-indigo-100'} flex items-center justify-center`}>
-                                                        <span className={`text-xs ${isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>→</span>
+
+                                                {/* Global/Linked Toggle - Only show for notes */}
+                                                {activeTab === 'notes' && (
+                                                    <div className={`flex-1 flex rounded-lg overflow-hidden border ${isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'}`}>
+                                                        <button
+                                                            onClick={() => setCreationScope('global')}
+                                                            className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'global'
+                                                                ? isDarkMode
+                                                                    ? 'bg-indigo-500 text-white'
+                                                                    : 'bg-indigo-500 text-white'
+                                                                : isDarkMode
+                                                                    ? 'bg-white/[0.03] text-white/50 hover:text-white'
+                                                                    : 'bg-gray-50 text-gray-500 hover:text-gray-900'
+                                                                }`}
+                                                        >
+                                                            <Globe className="w-3 h-3" />
+                                                            <span>Global</span>
+                                                        </button>
+                                                        <button
+                                                            onClick={() => setCreationScope('url')}
+                                                            className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium transition-colors ${creationScope === 'url'
+                                                                ? isDarkMode
+                                                                    ? 'bg-indigo-500 text-white'
+                                                                    : 'bg-indigo-500 text-white'
+                                                                : isDarkMode
+                                                                    ? 'bg-white/[0.03] text-white/50 hover:text-white'
+                                                                    : 'bg-gray-50 text-gray-500 hover:text-gray-900'
+                                                                }`}
+                                                        >
+                                                            <LinkIcon className="w-3 h-3" />
+                                                            <span>Linked</span>
+                                                        </button>
                                                     </div>
-                                                </div>
+                                                )}
+                                            </div>
+
+                                            {/* Rich Text Input */}
+                                            <div className="flex gap-2">
+                                                <div
+                                                    ref={contentEditableRef}
+                                                    contentEditable
+                                                    onInput={(e) => setNewNote(e.currentTarget.textContent || '')}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter' && !e.shiftKey) {
+                                                            e.preventDefault();
+                                                            handleAddNote();
+                                                        }
+                                                    }}
+                                                    className={`flex-1 px-4 py-2 rounded-lg ${isDarkMode ? 'bg-white/[0.03] border-white/[0.05] text-white/70 placeholder-white/30' : 'bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-400'} border text-sm focus:outline-none focus:border-indigo-500/30 transition-colors min-h-[40px] max-h-[120px] overflow-y-auto relative ${!newNote ? 'before:content-[attr(data-placeholder)] before:absolute before:top-2 before:left-4 before:text-sm before:pointer-events-none' : ''}`}
+                                                    data-placeholder={activeTab === 'notes' ? "Capture a thought..." : "Add a new task..."}
+                                                    suppressContentEditableWarning
+                                                />
+                                                <button
+                                                    onClick={handleAddNote}
+                                                    className="p-2 rounded-lg bg-indigo-500 text-white hover:bg-indigo-400 transition-colors"
+                                                >
+                                                    <Plus className="w-4 h-4" />
+                                                </button>
                                             </div>
                                         </div>
-                                    </div> */}
+                                    </div>
 
                                     {/* Footer */}
                                     <div className={`pt-6 mt-6 border-t ${isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'}`}>
