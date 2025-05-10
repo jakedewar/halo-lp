@@ -239,7 +239,7 @@ export default function Home() {
           >
             <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-2">
-                <label className="text-sm text-white/50">What would Halo be worth to you?</label>
+                <label className="text-sm text-white/50">What would Halo be worth to you, per month?</label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
                     { value: '0', label: '$0' },
