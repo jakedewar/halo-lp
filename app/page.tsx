@@ -225,7 +225,7 @@ export default function Home() {
                   ].map((option) => (
                     <label
                       key={option.value}
-                      className="relative flex items-center justify-center px-3 sm:px-4 py-2.5 rounded-md bg-white/5 border border-white/10 text-white cursor-pointer hover:border-indigo-500/50 transition-colors duration-200 [&:has(input:checked)]:border-indigo-500"
+                      className="relative flex items-center justify-center px-3 sm:px-4 py-2.5 rounded-md bg-[#1a1a1a] border border-white/10 text-white cursor-pointer hover:border-indigo-500/50 transition-colors duration-200 [&:has(input:checked)]:border-indigo-500"
                     >
                       <input
                         type="radio"
@@ -246,7 +246,7 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2.5 rounded-md bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 text-sm sm:text-base"
+                  className="flex-1 px-4 py-2.5 rounded-md bg-[#1a1a1a] border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 text-sm sm:text-base"
                   required
                   value={formState.email}
                   onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
