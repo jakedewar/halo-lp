@@ -14,7 +14,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="max-w-5xl mx-auto bg-black/30 backdrop-blur-sm px-6 py-4 rounded-lg border border-white/[0.05] bg-gradient-to-b from-white/[0.05] to-transparent backdrop-blur-[2px]"
+                className="max-w-5xl mx-auto bg-black/30 backdrop-blur-sm px-6 py-4 rounded-lg border border-white/[0.05] bg-gradient-to-b from-white/[0.05] to-transparent"
             >
                 <div className="flex items-center justify-between">
                     {/* Logo */}
@@ -48,12 +48,6 @@ export default function Navbar() {
                             Vision
                         </Link>
                         <Link
-                            href="/pricing"
-                            className="text-xs text-white/50 hover:text-white transition-colors duration-200"
-                        >
-                            Pricing
-                        </Link>
-                        <Link
                             href="#join-waitlist"
                             className="text-xs px-4 py-2 rounded-md bg-indigo-500 text-white hover:bg-indigo-400 transition-colors duration-200"
                         >
@@ -84,13 +78,6 @@ export default function Navbar() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Vision
-                        </Link>
-                        <Link
-                            href="/pricing"
-                            className="block text-sm text-white/50 hover:text-white transition-colors duration-200"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Pricing
                         </Link>
                         <Link
                             href="#join-waitlist"
