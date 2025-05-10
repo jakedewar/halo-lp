@@ -16,9 +16,29 @@ declare global {
 }
 
 const OrbitRing = () => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Don't render animations if user prefers reduced motion
+  if (prefersReducedMotion) {
+    return null;
+  }
+
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[800px] max-h-[800px] pointer-events-none hidden sm:block">
-      {/* Outer ring with dots */}
+      {/* Outer ring with dots - simplified animation */}
       <motion.div
         className="absolute inset-0 rounded-full"
         style={{
@@ -29,7 +49,7 @@ const OrbitRing = () => {
           rotate: [0, 360]
         }}
         transition={{
-          duration: 30,
+          duration: 45, // Slower animation
           repeat: Infinity,
           ease: "linear"
         }}
@@ -41,7 +61,7 @@ const OrbitRing = () => {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-indigo-500/30" />
       </motion.div>
 
-      {/* Middle ring */}
+      {/* Middle ring - simplified animation */}
       <motion.div
         className="absolute inset-[100px] rounded-full"
         style={{
@@ -51,13 +71,13 @@ const OrbitRing = () => {
           rotate: [360, 0]
         }}
         transition={{
-          duration: 20,
+          duration: 30, // Slower animation
           repeat: Infinity,
           ease: "linear"
         }}
       />
 
-      {/* Inner ring with gradient */}
+      {/* Inner ring with gradient - simplified animation */}
       <motion.div
         className="absolute inset-[200px] rounded-full"
         style={{
@@ -68,7 +88,7 @@ const OrbitRing = () => {
           rotate: [0, 360]
         }}
         transition={{
-          duration: 15,
+          duration: 25, // Slower animation
           repeat: Infinity,
           ease: "linear"
         }}
@@ -94,7 +114,7 @@ export default function Home() {
 
   useEffect(() => {
     // Generate stars only on client side
-    const generatedStars = [...Array(100)].map(() => ({
+    const generatedStars = [...Array(50)].map(() => ({ // Reduced number of stars on mobile
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       opacity: Math.random() * 0.5 + 0.5,
@@ -152,31 +172,35 @@ export default function Home() {
         {/* Base background */}
         <div className="absolute inset-0 bg-[#030303]" />
 
-        {/* Space gradient */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 via-purple-900/5 to-blue-900/20" />
+        {/* Space gradient - simplified on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 via-purple-900/5 to-blue-900/20 sm:from-indigo-900/10 sm:via-purple-900/5 sm:to-blue-900/20" />
 
-        {/* Nebula effect */}
+        {/* Nebula effect - simplified on mobile */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-500/2 rounded-full blur-[60px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/2 rounded-full blur-[60px]" />
+          <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-indigo-500/2 rounded-full blur-[30px] sm:blur-[60px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[250px] h-[250px] sm:w-[500px] sm:h-[500px] bg-purple-500/2 rounded-full blur-[30px] sm:blur-[60px]" />
         </div>
 
-        {/* Stars */}
+        {/* Stars - reduced on mobile */}
         <div className="absolute inset-0">
           {stars.map((star, i) => (
             <div
               key={i}
               className="absolute w-0.5 h-0.5 bg-white rounded-full"
-              style={star}
+              style={{
+                ...star,
+                willChange: 'opacity',
+                transform: 'translateZ(0)'
+              }}
             />
           ))}
         </div>
 
-        {/* Minimal noise */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.015] mix-blend-overlay" />
+        {/* Minimal noise - reduced on mobile */}
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.01] sm:opacity-[0.015] mix-blend-overlay" />
 
-        {/* Refined spotlight */}
-        <div className="absolute -top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 bg-gradient-to-b from-indigo-500/[0.07] to-blue-500/[0.07] rounded-full blur-[120px]" />
+        {/* Refined spotlight - simplified on mobile */}
+        <div className="absolute -top-1/2 left-1/2 w-[400px] h-[400px] sm:w-[800px] sm:h-[800px] -translate-x-1/2 bg-gradient-to-b from-indigo-500/[0.05] to-blue-500/[0.05] sm:from-indigo-500/[0.07] sm:to-blue-500/[0.07] rounded-full blur-[60px] sm:blur-[120px]" />
       </div>
 
       <Navbar />

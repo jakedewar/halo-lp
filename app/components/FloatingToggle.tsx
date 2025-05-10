@@ -31,8 +31,13 @@ export default function FloatingToggle({ onClick }: FloatingToggleProps) {
                 />
 
                 {/* Button */}
-                <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#030303] border border-white/[0.05] shadow-lg backdrop-blur-sm">
+                <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#030303] border border-white/[0.05] shadow-lg backdrop-blur-sm group">
                     <Circle className="w-5 h-5 text-indigo-300" strokeWidth={2.5} />
+                    
+                    {/* Try me label */}
+                    <div className="absolute right-full mr-3 px-2 py-1 rounded bg-[#030303] border border-white/[0.05] text-xs text-white/70 whitespace-nowrap">
+                        Try me
+                    </div>
                 </div>
             </div>
         </motion.button>

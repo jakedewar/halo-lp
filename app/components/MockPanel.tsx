@@ -123,14 +123,25 @@ export default function MockPanel({ isOpen, onClose }: MockPanelProps) {
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
                         onClick={onClose}
+                        style={{ willChange: 'opacity' }}
                     />
                     {/* Panel */}
                     <motion.div
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        transition={{ 
+                            type: 'spring', 
+                            damping: 25, 
+                            stiffness: 300,
+                            mass: 0.8 // Reduced mass for smoother animation
+                        }}
                         className={`fixed right-0 top-0 h-full ${currentView === 'memory-map' ? 'w-[600px]' : 'w-[400px]'} border-l ${themeClasses} z-50`}
+                        style={{ 
+                            willChange: 'transform',
+                            transform: 'translateZ(0)', // Hardware acceleration
+                            backfaceVisibility: 'hidden'
+                        }}
                     >
                         <div className="p-6 h-full flex flex-col">
                             {/* Header */}
