@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react';
 import Script from 'next/script';
 import TinyFunnel from './components/TinyFunnel';
 import { ShootingStars } from './components/ShootingStars';
