@@ -25,12 +25,14 @@ export default function TinyFunnel() {
   const [userType, setUserType] = useState<string>("")
   const [progress, setProgress] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [selectedOption, setSelectedOption] = useState<string>("")
   const isMobile = useMediaQuery("(max-width: 640px)")
 
   const handleNext = (nextStepId: string, type?: string) => {
     setPath([...path, currentStepId])
     setCurrentStepId(nextStepId)
     if (type) setUserType(type)
+    setSelectedOption("")
 
     // Calculate progress based on typical path length of 5 steps
     const newProgress = Math.min(100, ((path.length + 1) / 5) * 100)
@@ -89,11 +91,17 @@ export default function TinyFunnel() {
       <div className="grid gap-4 w-full max-w-md">
         <Button
           size={isMobile ? "default" : "lg"}
-          className="h-auto py-4 md:py-6 justify-start text-left bg-indigo-500 hover:bg-indigo-400"
-          onClick={() => handleNext("what-brings-you", "knowledge-worker")}
+          variant="outline"
+          className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+            selectedOption === "knowledge-worker" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+          }`}
+          onClick={() => {
+            setSelectedOption("knowledge-worker")
+            handleNext("what-brings-you", "knowledge-worker")
+          }}
         >
           <div className="flex items-center gap-3">
-            <Brain className="h-5 w-5" />
+            <Brain className={`h-5 w-5 ${selectedOption === "knowledge-worker" ? "text-white" : "text-indigo-400"}`} />
             <div>
               <div className="font-medium">I&apos;m a knowledge worker</div>
               <div className="text-xs md:text-sm text-primary-foreground/80">Looking to organize my digital life</div>
@@ -104,11 +112,16 @@ export default function TinyFunnel() {
         <Button
           size={isMobile ? "default" : "lg"}
           variant="outline"
-          className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-          onClick={() => handleNext("what-brings-you", "student")}
+          className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+            selectedOption === "student" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+          }`}
+          onClick={() => {
+            setSelectedOption("student")
+            handleNext("what-brings-you", "student")
+          }}
         >
           <div className="flex items-center gap-3">
-            <Lightbulb className="h-5 w-5 text-indigo-400" />
+            <Lightbulb className={`h-5 w-5 ${selectedOption === "student" ? "text-white" : "text-indigo-400"}`} />
             <div>
               <div className="font-medium text-white">I&apos;m a student</div>
               <div className="text-xs md:text-sm text-white/50">Need better research organization</div>
@@ -119,11 +132,16 @@ export default function TinyFunnel() {
         <Button
           size={isMobile ? "default" : "lg"}
           variant="outline"
-          className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-          onClick={() => handleNext("what-brings-you", "creator")}
+          className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+            selectedOption === "creator" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+          }`}
+          onClick={() => {
+            setSelectedOption("creator")
+            handleNext("what-brings-you", "creator")
+          }}
         >
           <div className="flex items-center gap-3">
-            <Code className="h-5 w-5 text-indigo-400" />
+            <Code className={`h-5 w-5 ${selectedOption === "creator" ? "text-white" : "text-indigo-400"}`} />
             <div>
               <div className="font-medium text-white">I&apos;m a creator</div>
               <div className="text-xs md:text-sm text-white/50">Want to streamline content creation</div>
@@ -151,11 +169,19 @@ export default function TinyFunnel() {
           <>
             <Button
               size={isMobile ? "default" : "lg"}
-              className="h-auto py-4 md:py-6 justify-start text-left bg-indigo-500 hover:bg-indigo-400"
-              onClick={() => handleNext("information-overload")}
+              variant="outline"
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "information-overload" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("information-overload")
+                handleNext("information-overload")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-white shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "information-overload" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Brain className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -170,11 +196,18 @@ export default function TinyFunnel() {
             <Button
               size={isMobile ? "default" : "lg"}
               variant="outline"
-              className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-              onClick={() => handleNext("lost-information")}
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "lost-information" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("lost-information")
+                handleNext("lost-information")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "lost-information" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Search className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -189,11 +222,18 @@ export default function TinyFunnel() {
             <Button
               size={isMobile ? "default" : "lg"}
               variant="outline"
-              className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-              onClick={() => handleNext("context-switching")}
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "context-switching" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("context-switching")
+                handleNext("context-switching")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "context-switching" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Orbit className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -209,11 +249,19 @@ export default function TinyFunnel() {
           <>
             <Button
               size={isMobile ? "default" : "lg"}
-              className="h-auto py-4 md:py-6 justify-start text-left bg-indigo-500 hover:bg-indigo-400"
-              onClick={() => handleNext("research-organization")}
+              variant="outline"
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "research-organization" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("research-organization")
+                handleNext("research-organization")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-white shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "research-organization" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Brain className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -228,11 +276,18 @@ export default function TinyFunnel() {
             <Button
               size={isMobile ? "default" : "lg"}
               variant="outline"
-              className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-              onClick={() => handleNext("citation-management")}
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "citation-management" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("citation-management")
+                handleNext("citation-management")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "citation-management" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Search className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -247,11 +302,18 @@ export default function TinyFunnel() {
             <Button
               size={isMobile ? "default" : "lg"}
               variant="outline"
-              className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-              onClick={() => handleNext("study-efficiency")}
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "study-efficiency" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("study-efficiency")
+                handleNext("study-efficiency")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "study-efficiency" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Orbit className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -267,11 +329,19 @@ export default function TinyFunnel() {
           <>
             <Button
               size={isMobile ? "default" : "lg"}
-              className="h-auto py-4 md:py-6 justify-start text-left bg-indigo-500 hover:bg-indigo-400"
-              onClick={() => handleNext("content-organization")}
+              variant="outline"
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "content-organization" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("content-organization")
+                handleNext("content-organization")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-white shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "content-organization" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Brain className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -286,11 +356,18 @@ export default function TinyFunnel() {
             <Button
               size={isMobile ? "default" : "lg"}
               variant="outline"
-              className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-              onClick={() => handleNext("research-workflow")}
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "research-workflow" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("research-workflow")
+                handleNext("research-workflow")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "research-workflow" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Search className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
@@ -305,11 +382,18 @@ export default function TinyFunnel() {
             <Button
               size={isMobile ? "default" : "lg"}
               variant="outline"
-              className="h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5"
-              onClick={() => handleNext("idea-management")}
+              className={`h-auto py-4 md:py-6 justify-start text-left border-white/10 hover:bg-white/5 ${
+                selectedOption === "idea-management" ? "bg-indigo-500 hover:bg-indigo-400 border-indigo-500" : ""
+              }`}
+              onClick={() => {
+                setSelectedOption("idea-management")
+                handleNext("idea-management")
+              }}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className={`h-10 w-10 rounded-full bg-indigo-400/20 flex items-center justify-center ${
+                  selectedOption === "idea-management" ? "text-white" : "text-indigo-400"
+                }`}>
                   <Orbit className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
