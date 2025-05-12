@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, Circle, Brain, Code, Lightbulb, Menu, MousePointerClick, Rocket, X, Search, Orbit } from "lucide-react"
+import { ArrowLeft, Circle, Brain, Code, Lightbulb, Menu, X, Search, Orbit } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 import { useMediaQuery } from "@/hooks/use-media-query"
 
@@ -110,7 +109,7 @@ export default function TinyFunnel() {
           <div className="flex items-center gap-3">
             <Lightbulb className="h-5 w-5 text-indigo-400" />
             <div>
-              <div className="font-medium text-white">I'm a student</div>
+              <div className="font-medium text-white">I&apos;m a student</div>
               <div className="text-xs md:text-sm text-white/50">Need better research organization</div>
             </div>
           </div>
@@ -161,7 +160,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium mb-1">Drowning in Information</div>
                   <div className="text-xs md:text-sm text-primary-foreground/80">
-                    "I save things but can never find them when I need them most"
+                    &quot;I save things but can never find them when I need them most&quot;
                   </div>
                 </div>
               </div>
@@ -180,7 +179,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium text-white mb-1">Knowledge Scattered Everywhere</div>
                   <div className="text-xs md:text-sm text-white/50">
-                    "My notes, bookmarks, and research are a mess across different tools"
+                    &quot;My notes, bookmarks, and research are a mess across different tools&quot;
                   </div>
                 </div>
               </div>
@@ -199,7 +198,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium text-white mb-1">Lost in Context Switching</div>
                   <div className="text-xs md:text-sm text-white/50">
-                    "I waste so much time jumping between tabs and trying to refocus"
+                    &quot;I waste so much time jumping between tabs and trying to refocus&quot;
                   </div>
                 </div>
               </div>
@@ -219,7 +218,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium mb-1">Research is Overwhelming</div>
                   <div className="text-xs md:text-sm text-primary-foreground/80">
-                    "I spend more time organizing sources than actually learning"
+                    &quot;I spend more time organizing sources than actually learning&quot;
                   </div>
                 </div>
               </div>
@@ -238,7 +237,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium text-white mb-1">Citations are a Pain</div>
                   <div className="text-xs md:text-sm text-white/50">
-                    "Managing references and formatting citations takes forever"
+                    &quot;Managing references and formatting citations takes forever&quot;
                   </div>
                 </div>
               </div>
@@ -257,7 +256,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium text-white mb-1">Information Overload</div>
                   <div className="text-xs md:text-sm text-white/50">
-                    "I take tons of notes but struggle to connect and retain the knowledge"
+                    &quot;I take tons of notes but struggle to connect and retain the knowledge&quot;
                   </div>
                 </div>
               </div>
@@ -277,7 +276,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium mb-1">Creative Chaos</div>
                   <div className="text-xs md:text-sm text-primary-foreground/80">
-                    "My research and references are a scattered mess"
+                    &quot;My research and references are a scattered mess&quot;
                   </div>
                 </div>
               </div>
@@ -296,7 +295,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium text-white mb-1">Research Takes Forever</div>
                   <div className="text-xs md:text-sm text-white/50">
-                    "I waste too much time searching for and organizing content"
+                    &quot;I waste too much time searching for and organizing content&quot;
                   </div>
                 </div>
               </div>
@@ -315,7 +314,7 @@ export default function TinyFunnel() {
                 <div className="flex-1">
                   <div className="font-medium text-white mb-1">Ideas Slip Away</div>
                   <div className="text-xs md:text-sm text-white/50">
-                    "Great ideas get lost in the chaos of my creative process"
+                    &quot;Great ideas get lost in the chaos of my creative process&quot;
                   </div>
                 </div>
               </div>
@@ -619,7 +618,7 @@ export default function TinyFunnel() {
             </span>
           </h2>
           <p className="text-base md:text-lg text-white/50 mb-6 md:mb-8 text-center">
-            We'll be in touch soon with your exclusive early access invitation.
+            We&apos;ll be in touch soon with your exclusive early access invitation.
           </p>
           <p className="text-base md:text-lg text-white/50 mb-6 md:mb-8 text-center">
             Follow <a href="https://x.com/DewrCommunity/" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300">@dewrcommunity</a> on Twitter to stay updated on our build journey.
@@ -674,7 +673,7 @@ export default function TinyFunnel() {
                 disabled={isLoading}
                 className="h-10 md:h-12 inline-flex items-center justify-center whitespace-nowrap rounded-md text-base font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-indigo-500 text-white hover:bg-indigo-400 px-6"
               >
-                {isLoading ? "Joining..." : "Join Waitlist"}
+                {isLoading ? 'Joining...' : 'Join Waitlist'}
               </button>
             </div>
             <p className="text-xs text-white/30">
