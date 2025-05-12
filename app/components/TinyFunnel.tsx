@@ -539,7 +539,7 @@ export default function TinyFunnel() {
         features: [
           { icon: Brain, title: "Smart Notes", description: "Capture thoughts and web content with AI-powered note organization" },
           { icon: Search, title: "Task Management", description: "Turn notes into actionable tasks and track progress effortlessly" },
-          { icon: Orbit, title: "Knowledge Graph", description: "See how your notes, tasks, and research connect in your personal network" }
+          { icon: Orbit, title: "Knowledge Graph", description: "Organize your notes, tasks, and research into a visual knowledge map" }
         ]
       },
       "student": {
